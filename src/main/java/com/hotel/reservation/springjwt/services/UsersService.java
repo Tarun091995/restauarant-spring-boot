@@ -6,6 +6,7 @@ import com.hotel.reservation.springjwt.model.AdminUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+@Service
 public class UsersService {
     @Autowired
     private AdminUserRepository adminUserRepository;

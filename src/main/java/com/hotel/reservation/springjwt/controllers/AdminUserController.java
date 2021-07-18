@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@Api(value = "Hello world")
+@Api(value = "Admin User Controller")
 @RequestMapping("/rest")
 public class AdminUserController {
 

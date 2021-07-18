@@ -10,7 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@Api(value = "Admin Controller")
+@Api(value = "Login Controller")
 @CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/rest/login")
 public class LoginController {
