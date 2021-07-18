@@ -25,26 +25,27 @@ public class ReservationController {
         return  new ResponseEntity<String>("hello world", HttpStatus.OK);
     }
 
+
+    /**
+     * This function will create a reservation
+     * @param reservation
+     * @return
+     */
     @RequestMapping(method = RequestMethod.POST )
     @ApiOperation("creates Reservation")
     @CrossOrigin(origins = "http://localhost:4200")
     public @ResponseBody
     ResponseEntity createReservation(@RequestBody Reservation reservation)
     {
-        System.out.println("*************************");
-        System.out.println(" in create reservation ");
-        System.out.println("*************************");
-//        System.out.println("Customer Id"  + reservation.getCustomer_id());
-//        System.out.println("Customer Name" + reservation.getCustomer_name());
-//        System.out.println("Reservation Date" + reservation.getReservation_date());
-//        System.out.println("Time" + reservation.getTime());
-//        System.out.println("Party Size" + reservation.getParty_size());
-//        System.out.println("Phone Number" + reservation.getPhone_number());
-//        System.out.println("Address" + reservation.getAddress());
-
         Reservation reservationfromdb = reservationService.createReservation(reservation);
         return new ResponseEntity<Reservation>(reservationfromdb,HttpStatus.OK);
     }
+
+    /**
+     * This function will update the existing reservation
+     * @param reservation
+     * @return
+     */
 
     @RequestMapping( method = RequestMethod.PUT)
     @ApiOperation("Updates Reservation")
@@ -55,6 +56,12 @@ public class ReservationController {
         Reservation reservationfromdb = reservationService.updateReservation(reservation);
         return new ResponseEntity<Reservation>(reservationfromdb,HttpStatus.OK);
     }
+
+    /**
+     * this function will cancel the reservation
+     * @param id
+     * @return
+     */
 
     //@RequestMapping( method = RequestMethod.DELETE)
     @ApiOperation("Cancel Reservation")
@@ -67,6 +74,12 @@ public class ReservationController {
         return new ResponseEntity<Reservation>(cancelledReservation,HttpStatus.OK);
     }
 
+    /**
+     * this method will fecth reservation for a given id
+     * @param id
+     * @return
+     */
+
     @CrossOrigin(origins = "http://localhost:4200")
     //@RequestMapping( method = RequestMethod.GET)
     @RequestMapping(value="/id/{id}",method = RequestMethod.GET)
@@ -77,6 +90,12 @@ public class ReservationController {
         return new ResponseEntity<Reservation>(fetchReservationForId,HttpStatus.OK);
     }
 
+    /**
+     * this method will fetch all reservations
+     * @return
+     */
+
+
     @CrossOrigin(origins = "http://localhost:4200")
     @RequestMapping(method = RequestMethod.GET)
     @ApiOperation("fetch all Reservations")
@@ -86,6 +105,13 @@ public class ReservationController {
         return new ResponseEntity<List<Reservation>>(allReservations,HttpStatus.OK);
     }
 
+
+    /**
+     * this function will assign a table to a existing reservation
+     * @param id
+     * @param tableNumber
+     * @return
+     */
     @CrossOrigin(origins = "http://localhost:4200")
     @RequestMapping(value = "assignTable/id/{id}/tableNumber/{tableNumber}" , method = RequestMethod.PUT)
     @ApiOperation("assign Table")
@@ -95,22 +121,30 @@ public class ReservationController {
         return new ResponseEntity<Reservation>(assignTable,HttpStatus.OK);
     }
 
+    /**
+     * Get Reservation for a confirmation code
+     * @param code
+     * @return
+     */
+
     @CrossOrigin(origins = "http://locahost:4200")
     @RequestMapping(value = "confirmationCode/{code}" , method = RequestMethod.GET)
     @ApiOperation("Get Reservation Based on confirmationcode")
     public @ResponseBody ResponseEntity getReservationOnCode(@PathVariable("code") String code)
     {
-        System.out.println("*************************");
-//        System.out.println(" in check Reservation ");
-//        System.out.println("*************************");
         Reservation getReservationByCode = reservationService.fecthReservationForCode(code);
         return new ResponseEntity<Reservation>(getReservationByCode,HttpStatus.OK);
     }
 
+
+    /**
+     *this function will return the all customer details
+     * @return
+     */
     @CrossOrigin(origins = "http://locahost:4200")
     @RequestMapping(value = "customerDetails" , method = RequestMethod.GET)
     @ApiOperation("Get Phone Numbers of Customers")
-    public @ResponseBody ResponseEntity PhoneNumberList()
+    public @ResponseBody ResponseEntity customerList()
     {
         List<Reservation> allCustomerDetails = reservationService.getAllCustomerDetails();
         return new ResponseEntity<>(allCustomerDetails,HttpStatus.OK);

@@ -16,7 +16,7 @@ import java.util.List;
 
 @RestController
 @Api(value = "Admin User Controller")
-@RequestMapping("/rest")
+@RequestMapping("/rest/admin/")
 public class AdminUserController {
 
     @Autowired
@@ -28,12 +28,17 @@ public class AdminUserController {
         return  new ResponseEntity<String>("hello world", HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/createUser",method = RequestMethod.POST)
+
+    /**
+     * This function will create a admin user
+     * @param user
+     * @return
+     */
+    @RequestMapping(value = "/user",method = RequestMethod.POST)
     @ApiOperation("Create Users")
     @CrossOrigin(origins = "http://localhost:4200")
-
     public @ResponseBody
-    ResponseEntity createUser(@RequestBody AdminUser user)
+    ResponseEntity createAdminUser(@RequestBody AdminUser user)
     {
         System.out.println("User Name"+user.getOwnerName());
         System.out.println("Phone Number"+user.getPhoneNumber());
@@ -43,6 +48,9 @@ public class AdminUserController {
         return  new ResponseEntity<AdminUser>(userfromdb,HttpStatus.OK);
     }
 
+    /**
+     * this function is used to get All Reservations
+     */
     @Autowired
     public ReservationService reservationService;
     @CrossOrigin(origins = "http://localhost:4200")
@@ -56,6 +64,11 @@ public class AdminUserController {
     }
 
 
+    /**
+     * this function is used to fetch the reservations based on given phonenumber
+     * @param phoneNumber
+     * @return
+     */
     @CrossOrigin(origins = "http://localhost:4200")
     @RequestMapping(value = "/fetchindividualreservation",method = RequestMethod.GET)
     @ApiOperation("fetch individual Reservations")
