@@ -37,6 +37,7 @@ public class ReservationController {
     public @ResponseBody
     ResponseEntity createReservation(@RequestBody Reservation reservation)
     {
+        System.out.println("in create reservation");
         Reservation reservationfromdb = reservationService.createReservation(reservation);
         return new ResponseEntity<Reservation>(reservationfromdb,HttpStatus.OK);
     }
@@ -70,6 +71,7 @@ public class ReservationController {
     public  @ResponseBody
     ResponseEntity cancelReservation(@PathVariable("id") long id)
     {
+        System.out.println("in cancel");
         Reservation cancelledReservation = reservationService.cancelReservation(id);
         return new ResponseEntity<Reservation>(cancelledReservation,HttpStatus.OK);
     }
