@@ -13,10 +13,10 @@
 		<guava.version>16.0.1</guava.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<spring.boot.version>2.1.8.RELEASE</spring.boot.version>
+		<spring.boot.version>2.3.8.RELEASE</spring.boot.version>
 		<swagger.version>2.6.1</swagger.version>
 		<junit-version>4.8.1</junit-version>
-		<jackson.version>2.10.0</jackson.version>
+		<jackson.version>2.11.0</jackson.version>
 		<hsqldb.version>2.4.1</hsqldb.version>
 		<mariadb.version>1.5.7</mariadb.version>
 	</properties>
@@ -91,6 +91,12 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.validation</groupId>
+			<artifactId>validation-api</artifactId>
+			<version>2.0.1.Final</version>
 		</dependency>
 
 		<dependency>

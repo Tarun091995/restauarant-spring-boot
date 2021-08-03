@@ -138,7 +138,6 @@ public class ReservationController {
         return new ResponseEntity<Reservation>(getReservationByCode,HttpStatus.OK);
     }
 
-
     /**
      *this function will return the all customer details
      * @return

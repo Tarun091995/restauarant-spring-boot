@@ -6,6 +6,10 @@ import com.hotel.reservation.springjwt.common.ReservationStatus;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 
 @Entity
 @Table(name = "reservation")
@@ -18,13 +22,9 @@ public class Reservation {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    public long getId() {
-        return id;
-    }
 
-    public void setId(long id) {
-        this.id = id;
-    }
+
+
 
     @Column(name = "customerName")
     private String customerName;
@@ -49,6 +49,16 @@ public class Reservation {
 
     @Column(name = "tableNumber" )
     private int tableNumber = -1;
+
+    private String formattedReservationTime;
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
 
     public int gettableNumber() {
         return tableNumber;
@@ -104,6 +114,12 @@ public class Reservation {
 
     public void setStatus(ReservationStatus status) {
         this.status = status;
+    }
+
+    public String getFormattedReservationTime() {
+        LocalDateTime localDateTime =
+                Instant.ofEpochMilli(reservationTime.getTime()).atZone(ZoneId.systemDefault()).toLocalDateTime();
+        return localDateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
     }
 
     @Override
