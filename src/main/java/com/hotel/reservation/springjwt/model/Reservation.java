@@ -50,6 +50,7 @@ public class Reservation {
     @Column(name = "tableNumber" )
     private int tableNumber = -1;
 
+    @Transient // this do not create a columns
     private String formattedReservationTime;
 
     public long getId() {
