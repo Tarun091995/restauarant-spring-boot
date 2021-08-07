@@ -1,8 +1,6 @@
 package com.hotel.reservation.springjwt.services;
 
 
-import com.hotel.reservation.springjwt.model.AdminUser;
-import com.hotel.reservation.springjwt.model.AdminUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

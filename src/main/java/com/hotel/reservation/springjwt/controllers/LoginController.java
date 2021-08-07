@@ -1,6 +1,5 @@
 package com.hotel.reservation.springjwt.controllers;
 
-import com.hotel.reservation.springjwt.model.AdminUser;
 import com.hotel.reservation.springjwt.services.UsersService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
