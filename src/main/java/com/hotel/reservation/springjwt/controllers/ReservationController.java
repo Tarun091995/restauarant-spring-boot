@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 
+
+// this class is responsible for managing reservations
 @RestController
 @Api(value = "Reservation Controller")
 @CrossOrigin(origins = "http://localhost:4200")
@@ -85,10 +87,9 @@ public class ReservationController {
      */
 
     @CrossOrigin(origins = "http://localhost:4200")
-    //@RequestMapping( method = RequestMethod.GET)
     @RequestMapping(value="/id/{id}",method = RequestMethod.GET)
     @ApiOperation("Get Reservations")
-    public  @ResponseBody ResponseEntity getindividualReservation(@PathVariable("id") long id)
+    public  @ResponseBody ResponseEntity getReservationForId(@PathVariable("id") long id)
     {
         Reservation fetchReservationForId = reservationService.fetchReservationForId(id);
         return new ResponseEntity<Reservation>(fetchReservationForId,HttpStatus.OK);
@@ -119,7 +120,7 @@ public class ReservationController {
     @CrossOrigin(origins = "http://localhost:4200")
     @RequestMapping(value = "assignTable/id/{id}/tableNumber/{tableNumber}" , method = RequestMethod.PUT)
     @ApiOperation("assign Table")
-    public @ResponseBody ResponseEntity assignTable(@PathVariable("id") long id , @PathVariable("tableNumber") int tableNumber)
+    public @ResponseBody ResponseEntity assignTableForReservation(@PathVariable("id") long id , @PathVariable("tableNumber") int tableNumber)
     {
         Reservation assignTable = reservationService.assignTable(id,tableNumber);
         return new ResponseEntity<Reservation>(assignTable,HttpStatus.OK);
@@ -132,7 +133,7 @@ public class ReservationController {
      */
 
     @CrossOrigin(origins = "http://locahost:4200")
-    @RequestMapping(value = "confirmationCode/{code}" , method = RequestMethod.GET)
+    @RequestMapping(value = "code/{code}" , method = RequestMethod.GET)
     @ApiOperation("Get Reservation Based on confirmationcode")
     public @ResponseBody ResponseEntity getReservationOnCode(@PathVariable("code") String code)
     {
@@ -148,7 +149,7 @@ public class ReservationController {
      */
     @CrossOrigin(origins = "http://locahost:4200")
     @RequestMapping(value = "customerDetails" , method = RequestMethod.GET)
-    @ApiOperation("Get Phone Numbers of Customers")
+    @ApiOperation("Get Customers Details")
     public @ResponseBody ResponseEntity customerList()
     {
         List<Reservation> allCustomerDetails = reservationService.getAllCustomerDetails();
