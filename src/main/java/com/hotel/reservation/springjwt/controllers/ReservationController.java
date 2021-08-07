@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -65,13 +67,13 @@ public class ReservationController {
      */
 
     //@RequestMapping( method = RequestMethod.DELETE)
+
     @ApiOperation("Cancel Reservation")
-    @CrossOrigin(origins = "http://localhost:4200")
     @RequestMapping(value="/id/{id}",method = RequestMethod.DELETE)
+    @CrossOrigin(origins = "http://localhost:4200")
     public  @ResponseBody
     ResponseEntity cancelReservation(@PathVariable("id") long id)
     {
-        System.out.println("in cancel");
         Reservation cancelledReservation = reservationService.cancelReservation(id);
         return new ResponseEntity<Reservation>(cancelledReservation,HttpStatus.OK);
     }
@@ -135,7 +137,9 @@ public class ReservationController {
     public @ResponseBody ResponseEntity getReservationOnCode(@PathVariable("code") String code)
     {
         Reservation getReservationByCode = reservationService.fecthReservationForCode(code);
-        return new ResponseEntity<Reservation>(getReservationByCode,HttpStatus.OK);
+        List<Reservation> reservations = new ArrayList<Reservation>();
+        reservations.add(getReservationByCode);
+        return new ResponseEntity<List<Reservation>>(reservations,HttpStatus.OK);
     }
 
     /**
