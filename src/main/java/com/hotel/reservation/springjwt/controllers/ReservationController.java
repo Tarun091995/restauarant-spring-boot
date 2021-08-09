@@ -110,6 +110,16 @@ public class ReservationController {
         return new ResponseEntity<List<Reservation>>(allReservations,HttpStatus.OK);
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
+    @RequestMapping(value = "seating",method = RequestMethod.GET)
+    @ApiOperation("Fetch the reservation other than cancel")
+    public @ResponseBody ResponseEntity fetchReservationsForSeating()
+    {
+        List<Reservation> reservationsNotInCancelState = reservationService.listAllReservationsForSeating();
+        return new ResponseEntity<List<Reservation>>(reservationsNotInCancelState,HttpStatus.OK);
+    }
+
+
 
     /**
      * this function will assign a table to a existing reservation

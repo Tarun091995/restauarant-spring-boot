@@ -22,10 +22,6 @@ public class Reservation {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-
-
-
-
     @Column(name = "customerName")
     private String customerName;
 

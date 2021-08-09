@@ -24,6 +24,9 @@ public interface ReservationRepository extends JpaRepository<Reservation,Integer
     public Reservation getReservationById(long id);
 
 
+    @Query(value = "select res from Reservation res where res.status != 'CANCELLED' ")
+    public List<Reservation> listAllReservationForSeating();
+
     @Query(value = "select res from Reservation res ")
     public List<Reservation> getAllCustomerDetails();
 }

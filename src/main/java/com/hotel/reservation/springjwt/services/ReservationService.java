@@ -52,6 +52,9 @@ public class ReservationService {
         return reservationRepository.findAll();
     }
 
+    public List<Reservation> listAllReservationsForSeating () {
+        return reservationRepository.listAllReservationForSeating();
+    }
     public Reservation listIndividualReservations(String PhoneNumber)
     {
         Reservation reservationDetails = reservationRepository.getReservationDetails(PhoneNumber);
